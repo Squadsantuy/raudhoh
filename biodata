@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail & Links - Raudah</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #0d0d0d;
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .mobile-container {
+            width: 100%;
+            max-width: 450px;
+            background: linear-gradient(135deg, #001a1a 0%, #000 100%);
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Header Back Button */
+        .header-alt {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .back-btn {
+            font-size: 20px;
+            color: #00ffd5;
+            text-decoration: none;
+        }
+
+        /* Glassmorphism Card Green */
+        .glass-card {
+            background: rgba(0, 43, 43, 0.3);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(0, 255, 213, 0.2);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        h3 { color: #00ffd5; margin-top: 0; font-size: 18px; border-bottom: 1px solid rgba(0,255,213,0.2); padding-bottom: 10px; }
+
+        /* Full Biodata List */
+        .full-bio { font-size: 14px; line-height: 1.8; }
+        .full-bio div { display: flex; justify-content: space-between; margin-bottom: 8px; }
+        .full-bio span { color: #888; }
+        .full-bio b { color: #fff; }
+
+        /* Article/Link List */
+        .link-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(255,255,255,0.05);
+            padding: 12px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: white;
+            margin-bottom: 12px;
+            transition: 0.3s;
+            border: 1px solid transparent;
+        }
+        .link-item:hover {
+            background: rgba(0, 255, 213, 0.1);
+            border-color: #00ffd5;
+            transform: translateX(5px);
+        }
+        .link-icon {
+            width: 40px;
+            height: 40px;
+            background: #008080;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            font-size: 18px;
+        }
+        .link-info h4 { margin: 0; font-size: 14px; }
+        .link-info p { margin: 0; font-size: 11px; color: #aaa; }
+
+        /* Footer */
+        footer { text-align: center; font-size: 11px; color: #555; margin-top: 40px; }
+    </style>
+</head>
+<body>
+
+    <div class="mobile-container">
+        <div class="header-alt">
+            <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i></a>
+            <h2 style="margin:0; font-size: 18px;">Informasi Lengkap</h2>
+        </div>
+
+        <div class="glass-card">
+            <h3><i class="fas fa-address-card"></i> Biodata Lengkap</h3>
+            <div class="full-bio">
+                <div><span>Nama Lengkap</span> <b>Eli Susanti</b></div>
+                <div><span>Panggilan</span> <b>Raudah</b></div>
+                <div><span>Status</span> <b>Mahasiswa Semester 5</b></div>
+                <div><span>Jurusan</span> <b>Komunikasi & Penyiaran Islam</b></div>
+                <div><span>Kampus</span> <b>IAIH NW LOTIM</b></div>
+                <div><span>Domisili</span> <b>Tuban, Jawa Timur</b></div>
+            </div>
+        </div>
+
+        <div class="glass-card">
+            <h3><i class="fas fa-link"></i> Website & Artikel</h3>
+            
+            <a href="https://tuban.fakta.blue" class="link-item">
+                <div class="link-icon"><i class="fas fa-newspaper"></i></div>
+                <div class="link-info">
+                    <h4>Fakta Tuban</h4>
+                    <p>Portal berita regional tuban.fakta.blue</p>
+                </div>
+            </a>
+
+            <a href="https://akhwatbercadar.web.id" class="link-item">
+                <div class="link-icon"><i class="fas fa-moon"></i></div>
+                <div class="link-info">
+                    <h4>Akhwat Bercadar</h4>
+                    <p>Situs islami edukatif & inspiratif</p>
+                </div>
+            </a>
+
+            <a href="https://idulfitri.web.id" class="link-item">
+                <div class="link-icon"><i class="fas fa-kaaba"></i></div>
+                <div class="link-info">
+                    <h4>Idul Fitri</h4>
+                    <p>Info seputar hari raya & persiapan Lebaran</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="glass-card">
+            <h3><i class="fas fa-info-circle"></i> Tentang Saya</h3>
+            <p style="font-size: 13px; line-height: 1.6; color: #ccc; margin: 0;">
+                Berawal dari ketertarikan di dunia web development dan penulisan artikel SEO, saya kini aktif mengelola jaringan situs Fakta Blue. Fokus saya adalah membangun media informasi yang bermanfaat bagi masyarakat luas, mulai dari berita daerah hingga konten religi.
+            </p>
+        </div>
+
+        <footer>
+            &copy; 2026 Raudah Project. All Rights Reserved.
+        </footer>
+    </div>
+
+</body>
+</html>
