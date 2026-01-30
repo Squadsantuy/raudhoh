@@ -172,16 +172,43 @@
 
         /* Portfolio */
         .portfolio-scroll { 
-            margin-top: 20px; 
-            display: flex; 
-            gap: 12px; 
-            overflow-x: auto; 
-            scrollbar-width: none; 
-            padding-bottom: 10px;
-        }
-        .portfolio-scroll::-webkit-scrollbar { display: none; }
-        .item-card { flex: 0 0 130px; height: 180px; background: linear-gradient(135deg, #0f4c75 0%, #087e8b 50%, #0b3d33 100%); border-radius: 12px; overflow: hidden; }
-        .item-card img { width: 80%; height: 90%; object-fit: cover; }
+    margin-top: 30px; 
+    display: flex; 
+    gap: 12px; 
+    overflow-x: auto; 
+    scrollbar-width: none; 
+    padding: 10px 0;
+}
+
+.portfolio-scroll::-webkit-scrollbar { display: none; }
+
+.item-card { 
+    flex: 0 0 135px; 
+    height: 185px; 
+    /* Gradien sesuai permintaan sebelumnya */
+    background: linear-gradient(135deg, #0f4c75 0%, #087e8b 50%, #0b3d33 100%); 
+    border-radius: 15px; 
+    overflow: hidden; 
+    display: flex;            /* Mengaktifkan flexbox untuk menengahkan gambar */
+    justify-content: center;   /* Center horizontal */
+    align-items: center;       /* Center vertikal */
+    border: 1px solid rgba(0, 255, 213, 0.2); 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.item-card img { 
+    width: 85%;               /* Mengecilkan lebar agar ada jarak dari tepi kiri-kanan */
+    height: 90%;              /* Mengecilkan tinggi agar ada jarak dari tepi atas-bawah */
+    object-fit: contain;      /* Menggunakan contain agar seluruh gambar terlihat utuh */
+    border-radius: 8px;       /* Memberikan sedikit lengkungan pada gambar di dalamnya */
+    transition: transform 0.3s ease;
+}
+
+/* Efek opsional: sedikit membesar saat disentuh */
+.item-card:active img {
+    transform: scale(1.05);
+}
+
     </style>
 </head>
 <body>
