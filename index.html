@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page Raudah</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #0d0d0d;
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .mobile-container {
+            width: 100%;
+            max-width: 450px;
+            background: linear-gradient(135deg, #001a1a 0%, #000 100%);
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-x: hidden;
+        }
+
+        /* Navigasi Fixed */
+        header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .nav-scroll { 
+            overflow-x: auto; 
+            white-space: nowrap; 
+            width: 80%; 
+            scrollbar-width: none; 
+            -ms-overflow-style: none;
+        }
+        .nav-scroll::-webkit-scrollbar { display: none; }
+
+        .nav-scroll ul { 
+            display: flex; 
+            gap: 15px; 
+            list-style: none; 
+            padding: 0; 
+            margin: 0;
+        }
+
+        .nav-scroll a { 
+            color: #777; 
+            text-decoration: none; 
+            font-size: 14px; 
+            padding: 5px 0;
+            transition: 0.3s;
+        }
+
+        .nav-scroll a.active { color: #fff; border-bottom: 2px solid #00ffd5; }
+
+        /* Dropdown Style */
+        .dropdown-wrapper { position: relative; }
+        .menu-toggle { cursor: pointer; font-size: 20px; padding: 5px; }
+        
+        .dropdown-menu {
+            position: absolute;
+            right: 0;
+            top: 35px;
+            background: rgba(0, 128, 128, 0.2); /* Glass hijau */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            min-width: 120px;
+            display: none;
+            z-index: 100;
+            overflow: hidden;
+        }
+        .dropdown-menu.show { display: block; animation: fadeIn 0.3s; }
+        .dropdown-menu a {
+            display: block;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 13px;
+        }
+        .dropdown-menu a:hover { background: rgba(0, 255, 213, 0.2); }
+
+        /* Hero Section */
+        .hero-box {
+            background: #008080;
+            border-radius: 25px;
+            padding: 25px;
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+            display: flex;
+            z-index: 1;
+        }
+
+        .hero-text { position: relative; z-index: 3; width: 65%; }
+        .hero-text h1 { margin: 0; font-size: 26px; }
+        .hero-text p { margin: 2px 0; font-size: 13px; font-weight: 300; }
+
+        .hero-img {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            height: 100%;
+            z-index: 2;
+        }
+
+        /* Tab System & Glassmorphism Hijau */
+        .about-section { margin-top: 30px; }
+        .tabs { display: flex; gap: 10px; margin-bottom: -1px; }
+
+        .tab-btn {
+            padding: 10px 15px;
+            border-radius: 12px 12px 0 0;
+            cursor: pointer;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+
+        .tab-btn.active-tab { background: rgba(0, 128, 128, 0.6); backdrop-filter: blur(5px); color: white; font-weight: bold; }
+
+        .tab-btn.outline {
+            border: 1px solid white;
+            border-radius: 20px;
+            background: transparent;
+            align-self: center;
+            padding: 5px 15px;
+        }
+        
+        .tab-btn.outline.active-tab { background: white; color: #000; }
+
+        /* Glassmorphism Hijau */
+        .content-box {
+            background: rgba(0, 43, 43, 0.3); /* Transparan gelap */
+            backdrop-filter: blur(15px); /* Efek Kaca */
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(0, 255, 213, 0.2); /* Border hijau tipis */
+            border-radius: 0 20px 20px 20px;
+            padding: 20px;
+            min-height: 150px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .tab-content { display: none; }
+        .tab-content.active-content { display: block; animation: fadeIn 0.5s; }
+
+        /* Biodata Ikon */
+        .bio-list { list-style: none; padding: 0; margin: 0; font-size: 14px; }
+        .bio-list li { 
+            margin-bottom: 12px; 
+            display: flex; 
+            align-items: center; 
+            gap: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 8px;
+        }
+        .bio-list i { color: #00ffd5; width: 20px; text-align: center; }
+        .bio-label { font-weight: bold; color: #00ffd5; min-width: 60px; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Portfolio */
+        .portfolio-scroll { 
+            margin-top: 20px; 
+            display: flex; 
+            gap: 12px; 
+            overflow-x: auto; 
+            scrollbar-width: none; 
+            padding-bottom: 10px;
+        }
+        .portfolio-scroll::-webkit-scrollbar { display: none; }
+        .item-card { flex: 0 0 130px; height: 180px; background: #222; border-radius: 12px; overflow: hidden; }
+        .item-card img { width: 100%; height: 100%; object-fit: cover; }
+    </style>
+</head>
+<body>
+
+    <div class="mobile-container">
+        <header>
+            <nav class="nav-scroll">
+                <ul id="main-nav">
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#">Profil</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Project</a></li>
+                    <li><a href="#">Social</a></li>
+                </ul>
+            </nav>
+            <div class="dropdown-wrapper">
+                <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+                <div id="dropdownMenu" class="dropdown-menu">
+                    <a href="#">Label 1</a>
+                    <a href="#">Label 2</a>
+                    <a href="#">Label 3</a>
+                </div>
+            </div>
+        </header>
+
+        <div style="font-size: 11px; border: 1px solid #333; display: inline-block; padding: 4px 10px; border-radius: 15px; margin-bottom: 15px;">
+            📸 created by: rdltl_jnnh
+        </div>
+
+        <div class="hero-box">
+            <div class="hero-text">
+                <h1>Mahasiswa</h1>
+                <p>Komunikasi dan Penyiaran Islam</p>
+                <br><br>
+                <p>Member of</p>
+                <h2 style="margin:0">Makhluk Astral</h2>
+            </div>
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiWUOlj2u3D_n71bJjz-LanFvqCW92bT4rpdSKaK7it7b785azKWLQN2G96Z6WVSE61AB_uR8VGxG7YLRi87TpyjFRjkSWD3qUIdL71VUFOpPZC1ISeEXU-lSeHQZtkh_TWihGdKG68vvSUIfJcrzfRW_BTuRifnMQKOIYAdREnji45Aqh-hU5skhYu0GVX/s739/IMG_20260130_231505.jpg" alt="Raudah" class="hero-img">
+        </div>
+
+        <section class="about-section">
+            <div class="tabs">
+                <div class="tab-btn active-tab" onclick="openTab(event, 'about-me')">About Me</div>
+                <div class="tab-btn outline" onclick="openTab(event, 'biodata')">Biodata</div>
+            </div>
+
+            <div class="content-box">
+                <div id="about-me" class="tab-content active-content">
+                    Haii kenalin aku Raudah, mahasiswi semester 5 di IAIH NW LOTIM. Aku aktif mengelola portal berita <a href="https://tuban.fakta.blue" style="color:#00ffd5;text-decoration:none;">fakta.blue</a> dan beberapa situs Islami lainnya.
+                </div>
+
+                <div id="biodata" class="tab-content">
+                    <ul class="bio-list">
+                        <li><i class="fas fa-user"></i> <span class="bio-label">Nama:</span> Raudah</li>
+                        <li><i class="fas fa-university"></i> <span class="bio-label">Kampus:</span> IAIH NW LOTIM</li>
+                        <li><i class="fas fa-globe"></i> <span class="bio-label">Situs:</span> fakta.blue</li>
+                        <li><i class="fas fa-map-marker-alt"></i> <span class="bio-label">Lokasi:</span> Tuban</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div class="portfolio-scroll">
+            <div class="item-card"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgmqnBSJwWN9KNd6CYvcRUv_n2gn1IJF9ae5VPH9qFVd2Ec7IBgoTrcVMYt8tag2yY68kKOzjK_cNOfJBo9ljYbVCL1Iew5aFC5REDtEmxOjvQ6pRhfksujLW48BG0Amfdk1bBhyphenhyphenPSrMnEHgGVgzZXnQlHnFS0KzzP2mmn4PGk2DgSKHjcT8SCuov3-rCU3/s327/IMG_20260130_231154.jpg"></div>
+            <div class="item-card"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiQMaE9BgiIRnmup7F54Y0yMf6oIDSBXedVc_4lJOtZ2zDkfRYxf2crHAmg619EYVzy3vjy1-7vr1k4SIzNKm3iUdjn4L5s-DE8GdFUVwJrPqpcN9iXUKPBcV8JqJtt-ZV1F2OVV5XgBZsM_OSvUsONdSF4MN4n13zAqOuVnXxZYarndbiLE7HjFCI_Y0Ro/s320/IMG_20260130_231229.jpg"></div>
+            <div class="item-card"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEik7EIe-6bBEs2Abhid7EKYgbRCz8TEmgM5gT8GxK88V3_XlRbGuSNoBQpLLgIwpxIeyvUmVAjePoPcjYw3vlsXxp9KKl8KbOJu5-0qckBsMCb2-WKVQLtK8SXU3GQ9dIUSd5sTpVVOrYoLIZymMRmai_6mhbX3BF1TF_DxSl8tVszu6w6MmW6nEbSHtXCm/s320/IMG_20260130_231330.jpg"></div>
+            <div class="item-card"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjURcH1IhJEoy4wuZNo8tX3DV8iL1zi1j9vvltKDRHnE4fiuOEd73-YMCl6RpyEEYptYn-fw2ylRFa0_k7Vx8FSZeYTO3prmAymoMi9YOpwLZy9wBQdXZFofJT9HZjK6vWm5yBtXK5rSZnSb9UpQ4E0WHLKzq5nzBhOoTpypNWDn2j3U_LdDx3Ho6UrhoqG/s320/IMG_20260130_231406.jpg"></div>
+        </div>
+    </div>
+
+    <script>
+        // Fungsi Tab
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active-content");
+            }
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active-tab");
+            }
+            document.getElementById(tabName).classList.add("active-content");
+            evt.currentTarget.classList.add("active-tab");
+        }
+
+        // Fungsi Dropdown
+        function toggleMenu() {
+            document.getElementById("dropdownMenu").classList.toggle("show");
+        }
+
+        // Fungsi Nav Active & Scroll
+        const links = document.querySelectorAll('.nav-scroll a');
+        links.forEach(link => {
+            link.addEventListener('click', function(e) {
+                links.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Klik di luar untuk tutup dropdown
+        window.onclick = function(event) {
+            if (!event.target.matches('.menu-toggle')) {
+                var dropdowns = document.getElementsByClassName("dropdown-menu");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
